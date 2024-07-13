@@ -16,17 +16,20 @@
         <div class="row">
           <div class="col">
             
+            <!-- Definindo action=, method=, e name= do form para acesso aos dados -->
+            <!-- value= , com este parametro, recuperamos as informações fornecidas pelo usuario,  -->
+            <!-- E as mantemos no redirecionamento da pagina em caso de errode cadastro -->
             <form action="/registrar" method="post">
               <div class="form-group">
-                <input name='nome' type="text" class="form-control" placeholder="Nome">
+                <input name='nome' value='<?= $this->view->usuario["nome"] ?>' type="text" class="form-control" placeholder="Nome">
               </div>
               
               <div class="form-group">
-                <input name='email' type="text" class="form-control" placeholder="E-mail">
+                <input name='email' value='<?= $this->view->usuario["email"] ?>' type="text" class="form-control" placeholder="E-mail">
               </div>
 
               <div class="form-group">
-                <input name='senha' type="password" class="form-control" placeholder="Senha">
+                <input name='senha' value='<?= $this->view->usuario["senha"] ?>' type="password" class="form-control" placeholder="Senha">
               </div>
               
               <div class="mt-4 mb-4">
@@ -35,6 +38,15 @@
                 </small>
               </div>
               <button type="submit" class="btn btn-primary btn-block">Inscrever-se</button>
+
+                <!-- Fluxo para erro no cadastro (redirecionamento) -->
+                <?php
+                  if($this->view->erroCadastro) { ?>
+
+                    <small class="form-text text-danger">Erro ao realizar cadastro, verifique os campos.</small>
+
+                <?php } ?>
+
             </form>
 
           </div>
