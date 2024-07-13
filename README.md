@@ -12,3 +12,10 @@ PHP | MySQL | MVC Project
 # Data Base
 ![alt text](img/image.png)  
 ![alt text](img/image-1.png)  
+
+# Erros
+## PDO Obj  
+ ![alt text](img/image-2.png)  
+### Soluções
+  - Comente as linhas de Virtual Server (example...) em httpd-ssl file
+  - Adicione uma senha ao MySql e PHPAdmin do Xampp | Lampp
