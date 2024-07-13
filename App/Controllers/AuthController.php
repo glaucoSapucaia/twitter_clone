@@ -18,7 +18,10 @@
 
             // Setando attrs
             $usuario->__set('email', $_POST['email']);
-            $usuario->__set('senha', $_POST['senha']);
+
+            // Convertendo senha para hash | verificnado com hash do DB
+            // md5() -> retorna um hash de 32 caracteres
+            $usuario->__set('senha', md5($_POST['senha']));
 
             // debug
             // echo '<pre>';

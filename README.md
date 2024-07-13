@@ -13,6 +13,13 @@ PHP | MySQL | MVC Project
 ![alt text](img/image.png)  
 ![alt text](img/image-1.png)  
 
+## Criptografando senhas
+### md-5 | hash de 32 caracteres | varchar(32)
+![alt text](img/image-3.png)  
+![alt text](img/image-4.png)  
+![alt text](img/image-5.png)  
+![alt text](img/image-6.png)
+
 # Erros
 ## PDO Obj  
  ![alt text](img/image-2.png)  

@@ -44,7 +44,9 @@ class IndexController extends Action {
 		// Setando attrs de Usuario obj
 		$usuario->__set('nome', $_POST['nome']);
 		$usuario->__set('email', $_POST['email']);
-		$usuario->__set('senha', $_POST['senha']);
+
+		// md5() -> tranforma strings em um hash de 32 caracteres
+		$usuario->__set('senha', md5($_POST['senha']));
 
 		// debug
 		// echo '<pre>';
