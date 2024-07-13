@@ -21,18 +21,31 @@
     </div>
 
     <div class="col-md-6 pt-4 pl-5 pr-5">
-		<form>
+		<!-- Adicionando campos ao form para processo de autenticação -->
+		<!-- method=, action=, name= -->
+		<form action='/autenticar' method='post'>
 			<div class="row">
 				<div class="col">
-					<input type="text" class="form-control" placeholder="E-mail">
+					<input name='email' type="text" class="form-control" placeholder="E-mail">
 				</div>
 				<div class="col">
-					<input type="text" class="form-control" placeholder="Senha">
+					<input name='senha' type="text" class="form-control" placeholder="Senha">
 				</div>
 				<div class="col-auto">
 					<button type="submit" class="btn btn-primary mb-2">Entrar</button>
 				</div>
 			</div>
+
+			<!-- Erro de login -->
+			<?php if($this->view->login == 'erro') { ?>
+				<!-- Div para fluxo de erro de login -->
+				<div class="row">
+					<div class="col">
+						<!-- Definindo fluxo para erro de login | indexController -->
+						<span class="text text-danger">E-mail e/ou senha inválido(s)!</span>
+					</div>
+				</div>
+			<?php } ?>
 		</form>
 
 		<div class="row pt-5 pl-5 pr-5">

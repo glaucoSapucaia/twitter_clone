@@ -9,6 +9,10 @@ use MF\Model\Container;
 class IndexController extends Action {
 
 	public function index() {
+		// Definindo fluxo de index (/) para erro de login (param na URL) em AuthController.php
+
+		// Verificando se param ?login=erro existe
+		$this->view->login = isset($_GET['login']) ? $_GET['login'] : '';
 
 		$this->render('index');
 	}
