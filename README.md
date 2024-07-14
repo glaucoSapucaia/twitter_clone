@@ -13,6 +13,7 @@ PHP | MySQL | MVC Project
 ![alt text](img/image.png)  
 ![alt text](img/image-1.png)  
 ![alt text](img/image-7.png)  
+![alt text](img/image-8.png)
 
 ## Criptografando senhas
 ### md-5 | hash de 32 caracteres | varchar(32)

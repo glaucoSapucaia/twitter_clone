@@ -88,6 +88,11 @@
             // flag para usuários
             $usuarios = array();
 
+            // debug
+            // echo '<pre>';
+            //     print_r($_SESSION);
+            // echo '</pre>';
+
             // fluxo para pesquisa
             if ($pesquisarPor != '') {
                 // instanciando obj usuario para busca por nomes
@@ -95,6 +100,10 @@
                 
                 // setando valor da busca
                 $usuario->__set('nome', $pesquisarPor);
+
+                // setando id de usuario autenticado para evitar busca por ele mesmo
+                $usuario->__set('id', $_SESSION['id']);
+
                 $usuarios = $usuario->getAll();
 
                 // debug
@@ -108,6 +117,18 @@
 
             // renderizando página
             $this->render('quemSeguir');
+        }
+
+        // action de acao | seguir e deixar de seguir
+        public function acao() {
+            // validando usuario
+            $this->validaAutenticacao();
+
+            // debug
+            echo '<pre>';
+                print_r($_GET);
+            echo '</pre>';
+
         }
     }
 ?>

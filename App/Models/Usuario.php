@@ -32,7 +32,7 @@
 
             // recuperand PDO obj de MF\Model - statement
             $stmt = $this->db->prepare($query);
-            
+
             // binds
             $stmt->bindValue(':nome', $this->__get('nome'));
             $stmt->bindValue(':email', $this->__get('email'));
@@ -124,13 +124,18 @@
                     id, nome, email
                 from
                     usuarios
-                where nome like :nome
+                where
+                    nome like :nome and id != :id_usuario
             ';
 
             $stmt = $this->db->prepare($query);
 
             // Adicione o % para a busca livre da combinação de letras
             $stmt->bindValue(':nome', '%' . $this->__get('nome') . '%');
+
+            // evitando busca pelo proprio usuario logado
+            $stmt->bindValue(':id_usuario', $this->__get('id'));
+
             $stmt->execute();
 
             return $stmt->fetchAll(\PDO::FETCH_ASSOC);
