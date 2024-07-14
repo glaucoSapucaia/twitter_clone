@@ -19,7 +19,7 @@
             $this->$attr = $value;
         }
 
-        // Salvando dados
+        // Salvando removendo dados | tweets
         public function salvar() {
             $query = '
                 insert into
@@ -39,6 +39,21 @@
             return $this;
         }
 
+        public function remover() {
+            $query = '
+                delete from
+                    tweets
+                where
+                    id = :id_tweet
+            ';
+
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id_tweet', $this->__get('id'));
+            $stmt->execute();
+
+            return true;
+        }
+
         // Recuperando dados de tweets
         public function getAll() {
             // left join para recuperar o nome de usuários
@@ -56,6 +71,15 @@
                     (t.id_usuario = u.id)
                 where
                     t.id_usuario = :id_usuario
+                    or t.id_usuario in 
+                    (
+                        select
+                            id_usuario_seguindo
+                        from
+                            usuarios_seguidores
+                        where
+                            id_usuario = :id_usuario
+                    )
                 order by
                     t.data desc
             ';
