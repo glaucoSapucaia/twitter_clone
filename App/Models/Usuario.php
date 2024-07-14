@@ -115,5 +115,25 @@
             // Retornando objeto de dados recuperados do DB após autenticação
             return $this;
         }
+
+        // buscando usuarios por pesquisa
+        public function getAll() {
+            // like -> retorna semelhença entre strings (nomes)
+            $query = '
+                select
+                    id, nome, email
+                from
+                    usuarios
+                where nome like :nome
+            ';
+
+            $stmt = $this->db->prepare($query);
+
+            // Adicione o % para a busca livre da combinação de letras
+            $stmt->bindValue(':nome', '%' . $this->__get('nome') . '%');
+            $stmt->execute();
+
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
     }
 ?>

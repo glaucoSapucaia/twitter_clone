@@ -71,5 +71,43 @@
                 header('Location: /?login=erro');
             }
         }
+
+        public function quemSeguir() {
+            // validando usuario
+            $this->validaAutenticacao();
+
+            // debug
+            // echo "Quem seguir ON!";
+            // echo '<pre>';
+            //     print_r($_GET);
+            // echo '</pre>';
+
+            // param recebido da busca
+            $pesquisarPor = isset($_GET['pesquisarPor']) ? $_GET['pesquisarPor'] : '';
+
+            // flag para usuários
+            $usuarios = array();
+
+            // fluxo para pesquisa
+            if ($pesquisarPor != '') {
+                // instanciando obj usuario para busca por nomes
+                $usuario = Container::getModel('Usuario');
+                
+                // setando valor da busca
+                $usuario->__set('nome', $pesquisarPor);
+                $usuarios = $usuario->getAll();
+
+                // debug
+                // echo '<pre>';
+                //     print_r($usuarios);
+                // echo '</pre>';
+            }
+
+            // usuarios dinamicos para a view quemSeguir
+            $this->view->usuarios = $usuarios;
+
+            // renderizando página
+            $this->render('quemSeguir');
+        }
     }
 ?>
