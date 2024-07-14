@@ -125,10 +125,29 @@
             $this->validaAutenticacao();
 
             // debug
-            echo '<pre>';
-                print_r($_GET);
-            echo '</pre>';
+            // echo '<pre>';
+            //     print_r($_GET);
+            // echo '</pre>';
 
+            // definindo flags para fluxo da pagina
+            $acao = isset($_GET['acao']) ? $_GET['acao'] : '';
+            $id_usuario_seguindo = isset($_GET['id_usuario']) ? $_GET['id_usuario'] : '';
+
+            // instanciando classe usuario
+            $usuario = Container::getModel('Usuario');
+
+            // Setando attrs
+            $usuario->__set('id', $_SESSION['id']);
+
+            if ($acao == 'seguir') {
+                $usuario->seguirUsuario($id_usuario_seguindo);
+
+            } else if ($acao == 'deixar_de_seguir') {
+                $usuario->deixarSeguirUsuario($id_usuario_seguindo);
+            }
+
+            // dedirecionando usuario após click em btn desguir | deixar de seguir
+            header('Location: /quem_seguir');
         }
     }
 ?>
