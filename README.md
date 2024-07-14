@@ -8,6 +8,7 @@ PHP | MySQL | MVC Project
 - [PHP Doc](https://www.php.net/)
 - [my mini framework](https://github.com/glaucoSapucaia/MVC_php)
 - [icons](https://fontawesome.com/)
+- [.htaccess](https://httpd.apache.org/docs/2.2/pt-br/howto/htaccess.html)
 
 # Data Base
 ![alt text](img/image.png)  
