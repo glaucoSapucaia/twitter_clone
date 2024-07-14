@@ -16,11 +16,19 @@
             //     print_r($_SESSION);
             // echo '</pre>';
 
-            // Recuperando lista de tweets do DB
+            // Recuperando lista de tweets e infos do usuario do DB
             $tweet = Container::getModel('Tweet');
+            $usuario = Container::getModel('Usuario');
 
             // flag para recuperar apenas tweets do usuario logado
             $tweet->__set('id_usuario', $_SESSION['id']);
+            $usuario->__set('id', $_SESSION['id']);
+
+            // Chamando metodos
+            $this->view->info_usuario = $usuario->getInfoUsuario();
+            $this->view->total_tweets = $usuario->getTotalTweets();
+            $this->view->total_seguindo = $usuario->getTotalSeguindo();
+            $this->view->total_seguidores = $usuario->getTotalSeguidores();
 
             $tweets = $tweet->getAll();
 
@@ -97,6 +105,16 @@
             // echo '<pre>';
             //     print_r($_GET);
             // echo '</pre>';
+
+            // instanciando usuario para dados do painel de perfil
+            $usuario = Container::getModel('Usuario');
+            $usuario->__set('id', $_SESSION['id']);
+
+            // Chamando metodos
+            $this->view->info_usuario = $usuario->getInfoUsuario();
+            $this->view->total_tweets = $usuario->getTotalTweets();
+            $this->view->total_seguindo = $usuario->getTotalSeguindo();
+            $this->view->total_seguidores = $usuario->getTotalSeguidores();
 
             // param recebido da busca
             $pesquisarPor = isset($_GET['pesquisarPor']) ? $_GET['pesquisarPor'] : '';
